@@ -108,9 +108,11 @@ jobs:
         working-directory: /home/runner/bin
       - name: Perform validation tests
         run: |
-          /home/runner/bin/stackhead-cli cli validate ./schemas/examples/cli-config/valid/cli.yml
-          /home/runner/bin/stackhead-cli module validate ./schemas/examples/module-config/valid/container-module.yml
-          /home/runner/bin/stackhead-cli project validate ./schemas/examples/project-definition/valid/docker_project.yml
+          /home/runner/bin/stackhead-cli init --version next -v
+          git clone --depth=1 --branch next https://github.com/getstackhead/stackhead.git stackhead_repo
+          /home/runner/bin/stackhead-cli cli validate ./stackhead_repo/schemas/examples/cli-config/valid/cli.yml
+          /home/runner/bin/stackhead-cli module validate ./stackhead_repo/schemas/examples/module-config/valid/container-module.yml
+          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/schemas/examples/project-definition/valid/docker_project.yml
       - name: Perform integration test
         uses: ./actions/integration-test
         with:
