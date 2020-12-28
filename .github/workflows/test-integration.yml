@@ -66,6 +66,21 @@ jobs:
       - uses: webfactory/ssh-agent@v0.4.1
         with:
           ssh-private-key: "${{ secrets.SSH_PRIVATE_KEY }}"
+      - name: Download StackHead CLI artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: stackhead-cli
+          path: /home/runner/bin
+      - name: Set execution permission on binary
+        run: chmod +x /home/runner/bin/stackhead-cli
+        working-directory: /home/runner/bin
+      - name: Perform validation tests
+        run: |
+          /home/runner/bin/stackhead-cli init --version next -v
+          git clone --depth=1 --branch next https://github.com/getstackhead/stackhead.git stackhead_repo
+          /home/runner/bin/stackhead-cli cli validate ./stackhead_repo/schemas/examples/cli-config/valid/cli.yml
+          /home/runner/bin/stackhead-cli module validate ./stackhead_repo/schemas/examples/module-config/valid/container-module.yml
+          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/schemas/examples/project-definition/valid/docker_project.yml
       - name: Setup Hetzner server
         id: setup_server
         uses: saitho/hetzner-cloud-action@v1.1.0
@@ -98,21 +113,6 @@ jobs:
           proxied: 0
           token: "${{ secrets.CLOUDFLARE_TOKEN }}"
           zone: "${{ secrets.CLOUDFLARE_ZONE }}"
-      - name: Download StackHead CLI artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: stackhead-cli
-          path: /home/runner/bin
-      - name: Set execution permission on binary
-        run: chmod +x /home/runner/bin/stackhead-cli
-        working-directory: /home/runner/bin
-      - name: Perform validation tests
-        run: |
-          /home/runner/bin/stackhead-cli init --version next -v
-          git clone --depth=1 --branch next https://github.com/getstackhead/stackhead.git stackhead_repo
-          /home/runner/bin/stackhead-cli cli validate ./stackhead_repo/schemas/examples/cli-config/valid/cli.yml
-          /home/runner/bin/stackhead-cli module validate ./stackhead_repo/schemas/examples/module-config/valid/container-module.yml
-          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/schemas/examples/project-definition/valid/docker_project.yml
       - name: Perform integration test
         uses: ./actions/integration-test
         with:
