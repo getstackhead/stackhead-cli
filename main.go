@@ -8,10 +8,10 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/getstackhead/stackhead/cli/commands"
-	"github.com/getstackhead/stackhead/cli/commands/cli"
-	"github.com/getstackhead/stackhead/cli/commands/module"
-	"github.com/getstackhead/stackhead/cli/commands/project"
+	"github.com/getstackhead/stackhead-cli/commands"
+	"github.com/getstackhead/stackhead-cli/commands/cli"
+	"github.com/getstackhead/stackhead-cli/commands/module"
+	"github.com/getstackhead/stackhead-cli/commands/project"
 )
 
 var cfgFile string

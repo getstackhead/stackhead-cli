@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/getstackhead/stackhead/cli/ansible"
+	"github.com/getstackhead/stackhead-cli/ansible"
 	jsonschema "github.com/saitho/jsonschema-validator/validator"
 )
 

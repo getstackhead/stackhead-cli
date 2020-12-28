@@ -7,8 +7,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/getstackhead/stackhead/cli/ansible"
-	"github.com/getstackhead/stackhead/cli/routines"
+	"github.com/getstackhead/stackhead-cli/ansible"
+	"github.com/getstackhead/stackhead-cli/routines"
 )
 
 // DeployApplication is a command object for Cobra that provides the deploy command

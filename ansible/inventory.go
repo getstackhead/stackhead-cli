@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v2"
 
-	"github.com/getstackhead/stackhead/cli/stackhead"
+	"github.com/getstackhead/stackhead-cli/stackhead"
 )
 
 type Inventory struct {

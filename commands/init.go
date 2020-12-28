@@ -3,8 +3,8 @@ package commands
 import (
 	"github.com/spf13/cobra"
 
-	commandsinit "github.com/getstackhead/stackhead/cli/commands/init"
-	"github.com/getstackhead/stackhead/cli/routines"
+	commandsinit "github.com/getstackhead/stackhead-cli/commands/init"
+	"github.com/getstackhead/stackhead-cli/routines"
 )
 
 // Init is a command object for Cobra that provides the init command

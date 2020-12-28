@@ -5,8 +5,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/getstackhead/stackhead/cli/routines"
-	"github.com/getstackhead/stackhead/cli/stackhead"
+	"github.com/getstackhead/stackhead-cli/routines"
+	"github.com/getstackhead/stackhead-cli/stackhead"
 )
 
 func collectModules() []string {

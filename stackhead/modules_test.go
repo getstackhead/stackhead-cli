@@ -5,7 +5,7 @@ import (
 
 	. "github.com/smartystreets/goconvey/convey"
 
-	"github.com/getstackhead/stackhead/cli/stackhead"
+	"github.com/getstackhead/stackhead-cli/stackhead"
 )
 
 func TestSplitModuleName(t *testing.T) {

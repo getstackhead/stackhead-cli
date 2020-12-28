@@ -1,4 +1,4 @@
-module github.com/getstackhead/stackhead/cli
+module github.com/getstackhead/stackhead-cli
 
 go 1.13
 

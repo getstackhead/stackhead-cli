@@ -10,7 +10,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/getstackhead/stackhead/cli/ansible"
+	"github.com/getstackhead/stackhead-cli/ansible"
 )
 
 // Exec is a wrapper function around exec.Command with additional settings for this CLI

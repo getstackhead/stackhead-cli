@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/getstackhead/stackhead/cli/ansible"
-	"github.com/getstackhead/stackhead/cli/routines"
+	"github.com/getstackhead/stackhead-cli/ansible"
+	"github.com/getstackhead/stackhead-cli/routines"
 )
 
 func installCollection(version string) error {
