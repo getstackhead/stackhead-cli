@@ -9,6 +9,6 @@ func GetCommands() *cobra.Command {
 		Use:   "project",
 		Short: "Project commands",
 	}
-	command.AddCommand(DeployApplication, DestroyApplication, Validate)
+	command.AddCommand(DeployApplication, DestroyApplication, Validate())
 	return command
 }

@@ -1,7 +1,7 @@
 FROM golang:alpine as builder
 WORKDIR /build
 COPY . /build
-RUN go build -o ./bin/stackhead-cli .
+RUN sh /build/.build/build.sh
 
 FROM pad92/ansible-alpine:2.10.3
 COPY --from=builder /build/bin/stackhead-cli /bin/

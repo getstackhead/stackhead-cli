@@ -6,14 +6,14 @@ validate_files()
 {
   SCHEMAFILE="./${1}.schema.json"
   EXAMPLE_DIR="examples/${1}"
-  echo "### TESTING ${SCHEMAFILE} ... START\n"
+  printf "### TESTING %s ... START\n" "${SCHEMAFILE}"
 	printf "Valid %s files should be valid:\n" "${EXAMPLE_DIR}"
 	for filename in "${EXAMPLE_DIR}"/valid/*; do
 		if bin/jsonschema-validator "${SCHEMAFILE}" "${filename}" 1> /dev/null; then
 		: # file is valid
 		else
 			TEST_FAILED=1
-			echo "- ERROR: File ${filename} is invalid." > /dev/stderr
+			printf "ERROR: File %s is invalid." "${filename}" > /dev/stderr
 		fi
 	done
 	printf "\n\n"
@@ -22,10 +22,10 @@ validate_files()
 	for filename in "${EXAMPLE_DIR}"/invalid/*; do
 		if bin/jsonschema-validator "${SCHEMAFILE}" "${filename}" 2> /dev/null; then
 			TEST_FAILED=1
-			echo "- ERROR: ${filename} is valid." > /dev/stderr
+			printf "ERROR: %s is valid." "${filename}" > /dev/stderr
 		fi
 	done
-  echo "### TESTING ${SCHEMAFILE} ... END\n"
+  printf "### TESTING %s ... END\n" "${SCHEMAFILE}"
 }
 
 validate_files "cli-config"
