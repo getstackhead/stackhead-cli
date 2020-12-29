@@ -61,7 +61,10 @@ func ExecAnsibleGalaxyCollection(args ...string) error {
 	}
 
 	// We have to set a relative path, otherwise ansible-galaxy will do weird things...
-	relCollectionsPath, _ := filepath.Rel(cwd, "/")
+	relCollectionsPath, err := filepath.Rel(cwd, "/")
+	if err != nil {
+		return err
+	}
 	args = append(args, "-p "+relCollectionsPath+"/../.."+collectionDir[0])
 
 	// Prepend "collection" task to args

@@ -9,6 +9,7 @@ func GetCommands() *cobra.Command {
 		Use:   "module",
 		Short: "StackHead module commands",
 	}
-	command.AddCommand(Validate)
+	validate := Validate()
+	command.AddCommand(validate)
 	return command
 }

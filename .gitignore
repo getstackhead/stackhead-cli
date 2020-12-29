@@ -2,3 +2,4 @@
 bin
 stackhead-cli
 .stackhead-cli.yml
+pkged.go

@@ -1,9 +1,11 @@
+//go:generate pkger
 package main
 
 import (
 	"fmt"
 	"os"
 
+	"github.com/markbates/pkger"
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -29,6 +31,7 @@ to quickly create a Cobra application.`,
 
 // main adds all child commands to the root command and sets flags appropriately.
 func main() {
+	_ = pkger.Include("/schemas")
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
