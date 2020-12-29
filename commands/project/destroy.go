@@ -32,7 +32,7 @@ var DestroyApplication = &cobra.Command{
 				if err == nil {
 					defer os.Remove(inventoryFile)
 					options := make(map[string]string)
-					options["project_name"] = strings.TrimSuffix(strings.TrimSuffix(filepath.Base(args[0]), ".yml"), ".yaml")
+					options["project_name"] = strings.TrimSuffix(strings.TrimSuffix(filepath.Base(args[0]), ".stackhead.yml"), ".stackhead.yaml")
 					err = routines.ExecAnsiblePlaybook("application-destroy", inventoryFile, options)
 				}
 
