@@ -78,13 +78,13 @@ jobs:
         run: |
           /home/runner/bin/stackhead-cli init --version ${{ env.STACKHEAD_VERSION }} -v
           git clone --depth=1 --branch ${{ env.STACKHEAD_VERSION }} https://github.com/getstackhead/stackhead.git stackhead_repo
-          /home/runner/bin/stackhead-cli cli validate ./stackhead_repo/schemas/examples/cli-config/valid/cli.yml
-          /home/runner/bin/stackhead-cli module validate ./stackhead_repo/schemas/examples/module-config/valid/container-module.yml
-          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/schemas/examples/project-definition/valid/project.stackhead.yml
-          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/schemas/examples/project-definition/valid/project-secured.stackhead.yaml
+          /home/runner/bin/stackhead-cli cli validate ./schemas/examples/cli-config/valid/cli.yml
+          /home/runner/bin/stackhead-cli module validate ./stackhead_repo/ansible/schemas/examples/module-config/valid/container-module.yml
+          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/ansible/schemas/examples/project-definition/valid/project.stackhead.yml
+          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/ansible/schemas/examples/project-definition/valid/project-secured.stackhead.yaml
 
-          cp ./stackhead_repo/schemas/examples/project-definition/valid/project.stackhead.yml ./stackhead_repo/schemas/examples/project-definition/invalid/project.yml
-          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/schemas/examples/project-definition/invalid/project.yml && returncode=$? || returncode=$?
+          cp ./stackhead_repo/ansible/schemas/examples/project-definition/valid/project.stackhead.yml ./stackhead_repo/ansible/schemas/examples/project-definition/invalid/project.yml
+          /home/runner/bin/stackhead-cli project validate ./stackhead_repo/ansible/schemas/examples/project-definition/invalid/project.yml && returncode=$? || returncode=$?
           if [ $returncode -eq 0 ]; then
             echo "File above should not have validated due to invalid file extension!"
             exit 1
