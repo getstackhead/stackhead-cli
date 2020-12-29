@@ -116,10 +116,8 @@ jobs:
           domain: '${{ env.DOMAIN_PREFIX }}.${{ env.DOMAIN }}'
           domain2: 'sub.${{ env.DOMAIN_PREFIX }}.${{ env.DOMAIN }}'
           webserver: nginx # when using cli "getstackhead.stackhead_webserver_" prefix is added automatically
-          selftest: 1
           cli: 1
           cli_bin_path: /home/runner/bin/stackhead-cli
-          version: "${{ github.HEAD_REF }}"
       - name: PR comment if integration stage was left intact
         uses: mshick/add-pr-comment@v1
         if: always() && contains( github.event.pull_request.labels.*.name, 'action/keep-integration-stage')
