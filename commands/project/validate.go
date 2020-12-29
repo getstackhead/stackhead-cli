@@ -1,6 +1,8 @@
 package project
 
 import (
+	"strings"
+
 	"github.com/spf13/cobra"
 
 	"github.com/getstackhead/stackhead-cli/routines"
@@ -15,5 +17,9 @@ var Validate = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		routines.Validate(args[0], "project-definition.schema.json")
+
+		if !strings.HasSuffix(args[0], ".stackhead.yml") && !strings.HasSuffix(args[0], ".stackhead.yaml") {
+			panic("The file name must end in \".stackhead.yml\" or \".stackhead.yaml\"!")
+		}
 	},
 }

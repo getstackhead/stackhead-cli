@@ -81,8 +81,8 @@ func CreateInventoryFile(ipAddress string, projectDefinitionFile string) (string
 		}
 		projectDefinitionFilePath := filepath.Base(projectDefinitionFile)
 
-		projectDefinitionFilePath = strings.TrimSuffix(projectDefinitionFilePath, ".yml")
-		projectDefinitionFilePath = strings.TrimSuffix(projectDefinitionFilePath, ".yaml")
+		projectDefinitionFilePath = strings.TrimSuffix(projectDefinitionFilePath, ".stackhead.yml")
+		projectDefinitionFilePath = strings.TrimSuffix(projectDefinitionFilePath, ".stackhead.yaml")
 		conf.All.Hosts.Mackerel.Stackhead.Applications = append(conf.All.Hosts.Mackerel.Stackhead.Applications, projectDefinitionFilePath)
 	}
 
