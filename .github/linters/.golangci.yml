@@ -1,0 +1,3 @@
+linters-settings:
+  gosec:
+    exclude: G402 # disabled as we allow unsafe SSL certificates
