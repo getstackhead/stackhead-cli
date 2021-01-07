@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ 'ubuntu-18.04', 'ubuntu-20.04', 'centos-8' ]
+        os: [ 'ubuntu-18.04', 'ubuntu-20.04' ] # , 'centos-8'
       fail-fast: false
     if: github.event.pull_request.draft == false
     env:
@@ -82,7 +82,7 @@ jobs:
         with:
           action: create
           server_name: "${{ env.DOMAIN_PREFIX }}"
-          server_image: ubuntu-18.04
+          server_image: "${{ matrix.os }}"
           server_location: fsn1
           server_ssh_key_name: gh-actions
           wait_for_ssh: 1
