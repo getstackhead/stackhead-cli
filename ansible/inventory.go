@@ -25,6 +25,7 @@ type Inventory struct {
 			StackHeadConfigSetup      map[string]interface{} `yaml:"stackhead__config_setup"`
 			StackHeadConfigDeployment map[string]interface{} `yaml:"stackhead__config_deployment"`
 			StackHeadConfigDestroy    map[string]interface{} `yaml:"stackhead__config_destroy"`
+			TerraformUpdateInterval   string                 `yaml:"stackhead__tf_update_interval"`
 		}
 		Hosts struct {
 			Mackerel struct {
@@ -89,6 +90,10 @@ func CreateInventoryFile(ipAddress string, projectDefinitionFile string) (string
 	conf.All.Vars.StackHeadConfigSetup = viper.GetStringMap("config.setup")
 	conf.All.Vars.StackHeadConfigDeployment = viper.GetStringMap("config.deployment")
 	conf.All.Vars.StackHeadConfigDestroy = viper.GetStringMap("config.destroy")
+
+	if viper.IsSet("terraform.update_interval") {
+		conf.All.Vars.TerraformUpdateInterval = viper.GetString("terraform.update_interval")
+	}
 
 	d, err := yaml.Marshal(&conf)
 	if err != nil {

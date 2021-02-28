@@ -22,6 +22,15 @@
           }
         }
       }
+    },
+    "terraform": {
+      "type": "object",
+      "properties": {
+        "update_interval": {
+          "type": "string",
+          "description": "Interval at which automated Terraform applies are performed. Format see Unix timer \"OnCalendar\""
+        }
+      }
     }
   }
 }
