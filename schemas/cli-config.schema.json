@@ -31,6 +31,15 @@
           "description": "Interval at which automated Terraform applies are performed. Format see Unix timer \"OnCalendar\""
         }
       }
+    },
+    "certificates": {
+      "type": "object",
+      "properties": {
+        "register_email": {
+          "type": "string",
+          "description": "Email address used for registering SSL certificates via Lets Encrypt"
+        }
+      }
     }
   }
 }

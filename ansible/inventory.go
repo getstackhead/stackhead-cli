@@ -25,6 +25,7 @@ type Inventory struct {
 			StackHeadConfigSetup      map[string]interface{} `yaml:"stackhead__config_setup"`
 			StackHeadConfigDeployment map[string]interface{} `yaml:"stackhead__config_deployment"`
 			StackHeadConfigDestroy    map[string]interface{} `yaml:"stackhead__config_destroy"`
+			CertificatesEmailAddress  string                 `yaml:"certificates_email_address"`
 			TerraformUpdateInterval   string                 `yaml:"stackhead__tf_update_interval"`
 		}
 		Hosts struct {
@@ -93,6 +94,10 @@ func CreateInventoryFile(ipAddress string, projectDefinitionFile string) (string
 
 	if viper.IsSet("terraform.update_interval") {
 		conf.All.Vars.TerraformUpdateInterval = viper.GetString("terraform.update_interval")
+	}
+
+	if viper.IsSet("certificates.register_email") {
+		conf.All.Vars.CertificatesEmailAddress = viper.GetString("certificates.register_email")
 	}
 
 	d, err := yaml.Marshal(&conf)
