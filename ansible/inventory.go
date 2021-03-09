@@ -19,6 +19,7 @@ type Inventory struct {
 			AnsibleConnection         string                 `yaml:"ansible_connection"`
 			AnsiblePythonInterpreter  string                 `yaml:"ansible_python_interpreter"`
 			StackHeadConfigFolder     string                 `yaml:"stackhead__config_folder"`
+			StackHeadDns              []string               `yaml:"stackhead__dns"`
 			StackHeadWebserver        string                 `yaml:"stackhead__webserver"`
 			StackHeadContainer        string                 `yaml:"stackhead__container"`
 			StackHeadPlugins          []string               `yaml:"stackhead__plugins"`
@@ -56,6 +57,11 @@ func CreateInventoryFile(ipAddress string, projectDefinitionFile string) (string
 	}
 
 	conf.All.Vars.StackHeadContainer, err = stackhead.GetContainerModule()
+	if err != nil {
+		return "", err
+	}
+
+	conf.All.Vars.StackHeadDns, err = stackhead.GetDnsModules()
 	if err != nil {
 		return "", err
 	}

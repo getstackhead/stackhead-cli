@@ -14,6 +14,8 @@ const (
 	ModuleContainer = "stackhead_container"
 	// ModulePlugin is the string that identifies a package name as plugin package
 	ModulePlugin = "stackhead_plugin"
+	// ModuleDns is the string that identifies a package name as dns package
+	ModuleDns = "stackhead_dns"
 )
 
 // SplitModuleName splits a given module name into vendor, module type and base name
@@ -64,6 +66,12 @@ func IsPluginModule(moduleName string) bool {
 	return strings.HasPrefix(moduleName, ModulePlugin)
 }
 
+// IsDnsModule checks if the given module is a dns module based on its name
+func IsDnsModule(moduleName string) bool {
+	moduleName = RemoveVendor(moduleName)
+	return strings.HasPrefix(moduleName, ModuleDns)
+}
+
 // GetModuleType returns the module type for the given module according its name
 // Will return the values of ModulePlugin, ModuleContainer and ModuleWebserver constants.
 func GetModuleType(moduleName string) string {
@@ -75,6 +83,9 @@ func GetModuleType(moduleName string) string {
 	}
 	if IsWebserverModule(moduleName) {
 		return ModuleWebserver
+	}
+	if IsDnsModule(moduleName) {
+		return ModuleDns
 	}
 	return ""
 }
@@ -112,6 +123,21 @@ func GetContainerModule() (string, error) {
 		module = "getstackhead.stackhead_container_docker"
 	}
 	return AutoCompleteModuleName(module, ModuleContainer)
+}
+
+func GetDnsModules() ([]string, error) {
+	var plugins = viper.GetStringSlice("modules.dns")
+	var modules []string
+	if len(plugins) > 0 {
+		for _, plugin := range plugins {
+			moduleName, err := AutoCompleteModuleName(plugin, ModuleDns)
+			if err != nil {
+				return []string{}, err
+			}
+			modules = append(modules, moduleName)
+		}
+	}
+	return modules, nil
 }
 
 func GetPluginModules() ([]string, error) {
