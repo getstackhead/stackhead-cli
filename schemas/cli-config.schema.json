@@ -15,6 +15,12 @@
         "container": {
           "type": "string"
         },
+        "dns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "plugins": {
           "type": "array",
           "items": {
